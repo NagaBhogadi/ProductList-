@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9A8E34762FCF28A900F2F655 /* Exceptions for "ProductList" folder in "ProductList" target */ = {
+		9A8E34DC2FCF3A6E00F2F655 /* Exceptions for "ProductList" folder in "ProductList" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +43,7 @@
 		9A8E34502FCF28A700F2F655 /* ProductList */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				9A8E34762FCF28A900F2F655 /* Exceptions for "ProductList" folder in "ProductList" target */,
+				9A8E34DC2FCF3A6E00F2F655 /* Exceptions for "ProductList" folder in "ProductList" target */,
 			);
 			path = ProductList;
 			sourceTree = "<group>";
@@ -56,6 +56,26 @@
 		9A8E34712FCF28A900F2F655 /* ProductListUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ProductListUITests;
+			sourceTree = "<group>";
+		};
+		9A8E34882FCF29D300F2F655 /* Model */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9A8E34D22FCF2F3600F2F655 /* Cell */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9A8E34D92FCF2F6200F2F655 /* ViewController  */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "ViewController ";
+			sourceTree = "<group>";
+		};
+		9AFBBC592FD8978700612E31 /* NetwokManager */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NetwokManager;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -88,6 +108,10 @@
 		9A8E34452FCF28A700F2F655 = {
 			isa = PBXGroup;
 			children = (
+				9AFBBC592FD8978700612E31 /* NetwokManager */,
+				9A8E34D92FCF2F6200F2F655 /* ViewController  */,
+				9A8E34D22FCF2F3600F2F655 /* Cell */,
+				9A8E34882FCF29D300F2F655 /* Model */,
 				9A8E34502FCF28A700F2F655 /* ProductList */,
 				9A8E34672FCF28A900F2F655 /* ProductListTests */,
 				9A8E34712FCF28A900F2F655 /* ProductListUITests */,
@@ -122,6 +146,10 @@
 			);
 			fileSystemSynchronizedGroups = (
 				9A8E34502FCF28A700F2F655 /* ProductList */,
+				9A8E34882FCF29D300F2F655 /* Model */,
+				9A8E34D22FCF2F3600F2F655 /* Cell */,
+				9A8E34D92FCF2F6200F2F655 /* ViewController  */,
+				9AFBBC592FD8978700612E31 /* NetwokManager */,
 			);
 			name = ProductList;
 			packageProductDependencies = (
