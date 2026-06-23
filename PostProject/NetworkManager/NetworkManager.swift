@@ -1,0 +1,54 @@
+//
+//  NetworkManager.swift
+//  PostProject
+//
+//  Created by Naga Rajitha Bhogadi on 6/23/26.
+//
+
+import UIKit
+
+protocol NetworkProtocol {
+    func fetchDataFrom(serverUrl: String, completion: @escaping (([Post]) -> ()))
+}
+
+final class NetworkManager: NetworkProtocol, Sendable {
+    static let shared: NetworkManager = NetworkManager()
+    
+    func fetchDataFrom(serverUrl: String, completion: @escaping ([Post]) -> ()) {
+        
+        guard let serverURL = URL(string: serverUrl) else {
+            print("Server URL is invalid")
+            // we need to return something
+            completion([])
+            return
+        }
+        
+        let urlRequest = URLRequest(url: serverURL)
+        let urlSession = URLSession.shared
+        urlSession.dataTask(with: urlRequest) { data, response, error in
+            // TODO: - code goes here
+            
+            if error != nil {
+                print("Unable to fetch data from server, \(error!.localizedDescription)")
+                completion([])
+            }
+            
+            guard let receivedData = data else {
+                print("Fetched data is nil")
+                completion([])
+                return
+            }
+            
+            // parse the data into the model
+            do {
+                let receivedPostList = try JSONDecoder().decode([Post].self, from: receivedData)
+                print(receivedPostList)
+                completion(receivedPostList)
+            } catch {
+                print("Unable to parse the data into the model")
+                completion([])
+            }
+        }
+        .resume()
+    }
+}
