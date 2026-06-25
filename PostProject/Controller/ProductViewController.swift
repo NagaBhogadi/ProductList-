@@ -11,8 +11,17 @@ import UIKit
 final class ProductViewController: UIViewController {
 
     private let tableView = UITableView()
-    private var products: [Post] = []
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
+//    private var products: [Post] = []
+    private let viewModel: ProductViewModelProtocol
     
+    init(viewModel: ProductViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 //    MARK: - View Life Cycle
 
     override func viewDidLoad() {
@@ -21,8 +30,17 @@ final class ProductViewController: UIViewController {
         title = "Post"
         view.backgroundColor = .white
 
+//        setupTableView()
+//        fetchProducts()
         setupTableView()
-        fetchProducts()
+        setupActivityIndicator()
+        showLoader()
+        viewModel.fetchProducts(){ [weak self]  in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                self?.hideLoader()
+            }
+        }
     }
 
 //    MARK: - Set up TableView
@@ -44,27 +62,49 @@ final class ProductViewController: UIViewController {
         ])
     }
     
-//    MARK: - API Call
-
-    private func fetchProducts() {
-        NetworkManager.shared.fetchDataFrom(
-            serverUrl: APIConstants.smartphonesURL
-        ) { [weak self] fetchedProducts in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                print("Products count:", fetchedProducts.count)
-                self.products = fetchedProducts
-                self.tableView.reloadData()
-            }
-        }
+    // MARK: - Setup Loader
+    
+    private func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .systemRed
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 }
+
+
+//MARK: - Progress Method
+
+extension ProductViewController {
+    func showLoader() {
+        activityIndicator.startAnimating()
+        tableView.isHidden = true
+    }
+    
+    func hideLoader() {
+        activityIndicator.stopAnimating()
+        tableView.isHidden = false
+    }
+    
+    func reloadTableView() {
+        tableView.reloadData()
+    }
+}
+
+
+
 
 // MARK: - UITableViewDataSource
 
 extension ProductViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products.count
+        viewModel.numberOfPost()
     }
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,7 +114,7 @@ extension ProductViewController: UITableViewDataSource {
         ) as? ProductCell else {
             return UITableViewCell()
         }
-        cell.configure(with: products[indexPath.row])
+        cell.configure(with: viewModel.post(at: indexPath.row))
         return cell
     }
 }
