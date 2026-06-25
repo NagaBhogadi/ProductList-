@@ -6,14 +6,21 @@
 //
 
 import UIKit
-// MARK: - Product View Controller
+// MARK: - Post View Controller
 
 final class ProductViewController: UIViewController {
-
+    
+    // MARK: - UI Components
+    
     private let tableView = UITableView()
     private let activityIndicator = UIActivityIndicatorView(style: .large)
-//    private var products: [Post] = []
+    
+    // MARK: - Properties
+    //   TODO: -  need to replace with dependency injection
+    
     private let viewModel: ProductViewModelProtocol
+    
+    // MARK: - Initializer
     
     init(viewModel: ProductViewModelProtocol) {
         self.viewModel = viewModel
@@ -22,16 +29,14 @@ final class ProductViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//    MARK: - View Life Cycle
-
+    //    MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "Post"
         view.backgroundColor = .white
-
-//        setupTableView()
-//        fetchProducts()
+        
         setupTableView()
         setupActivityIndicator()
         showLoader()
@@ -42,18 +47,18 @@ final class ProductViewController: UIViewController {
             }
         }
     }
-
-//    MARK: - Set up TableView
+    
+    //    MARK: - Set up TableView
     
     private func setupTableView() {
         view.addSubview(tableView)
-
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.register(ProductCell.self, forCellReuseIdentifier: ProductCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 200
-
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -62,7 +67,7 @@ final class ProductViewController: UIViewController {
         ])
     }
     
-    // MARK: - Setup Loader
+    // MARK: - Setup ActivityIndicator
     
     private func setupActivityIndicator() {
         view.addSubview(activityIndicator)
@@ -77,7 +82,6 @@ final class ProductViewController: UIViewController {
         ])
     }
 }
-
 
 //MARK: - Progress Method
 
@@ -96,9 +100,6 @@ extension ProductViewController {
         tableView.reloadData()
     }
 }
-
-
-
 
 // MARK: - UITableViewDataSource
 

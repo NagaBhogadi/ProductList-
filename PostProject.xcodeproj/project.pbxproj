@@ -58,11 +58,6 @@
 			path = PostProjectUITests;
 			sourceTree = "<group>";
 		};
-		9AB5E2DB2FECD87400C9C8E8 /* ViewModel */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +88,6 @@
 		9AB5E02A2FEAF53000C9C8E8 = {
 			isa = PBXGroup;
 			children = (
-				9AB5E2DB2FECD87400C9C8E8 /* ViewModel */,
 				9AB5E0352FEAF53000C9C8E8 /* PostProject */,
 				9AB5E04C2FEAF53200C9C8E8 /* PostProjectTests */,
 				9AB5E0562FEAF53200C9C8E8 /* PostProjectUITests */,
@@ -128,7 +122,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				9AB5E0352FEAF53000C9C8E8 /* PostProject */,
-				9AB5E2DB2FECD87400C9C8E8 /* ViewModel */,
 			);
 			name = PostProject;
 			packageProductDependencies = (

@@ -8,23 +8,31 @@
 import UIKit
 
 final class ProductCell: UITableViewCell {
-
+    
+    // MARK: - Identifier
+    
     static let identifier = "ProductCell"
-
+    
+    // MARK: - UI Components
+    
     private let userIdLabel = UILabel()
     private let idLabel = UILabel()
     private let titleLabel = UILabel()
     private let bodyLabel = UILabel()
-
+    
+    // MARK: - Initializer
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    // MARK: - Setup UI
+    
     private func setupUI() {
         userIdLabel.font = .boldSystemFont(ofSize: 18)
         idLabel.font = .boldSystemFont(ofSize: 18)
@@ -41,13 +49,13 @@ final class ProductCell: UITableViewCell {
             titleLabel,
             bodyLabel
         ])
-
+        
         stackView.axis = .vertical
         stackView.spacing = 6
-
+        
         contentView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -55,7 +63,9 @@ final class ProductCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
         ])
     }
-
+    
+    // MARK: - Configure Cell
+    
     func configure(with post: Post) {
         userIdLabel.text = "User ID: \(post.userId)"
         idLabel.text = "ID: \(post.id)"

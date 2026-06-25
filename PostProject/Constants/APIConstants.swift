@@ -9,5 +9,9 @@
 import Foundation
 
 enum APIConstants {
+    
+    // MARK: - API URLs
+    
     static let smartphonesURL = "https://jsonplaceholder.typicode.com/posts"
+    
 }

@@ -12,13 +12,18 @@ protocol NetworkProtocol {
 }
 
 final class NetworkManager: NetworkProtocol, Sendable {
+    
+    // MARK: - Singleton
+    
     static let shared: NetworkManager = NetworkManager()
+    private init() { }
+    
+    // MARK: - Fetch Data
     
     func fetchDataFrom(serverUrl: String, completion: @escaping ([Post]) -> ()) {
         
         guard let serverURL = URL(string: serverUrl) else {
             print("Server URL is invalid")
-            // we need to return something
             completion([])
             return
         }
@@ -32,14 +37,14 @@ final class NetworkManager: NetworkProtocol, Sendable {
                 print("Unable to fetch data from server, \(error!.localizedDescription)")
                 completion([])
             }
-            
             guard let receivedData = data else {
                 print("Fetched data is nil")
                 completion([])
                 return
             }
             
-            // parse the data into the model
+            //MARK: -  Parse  Data into Model
+            
             do {
                 let receivedPostList = try JSONDecoder().decode([Post].self, from: receivedData)
                 print(receivedPostList)

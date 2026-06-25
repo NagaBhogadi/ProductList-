@@ -6,7 +6,13 @@
 //
 
 import Foundation
+
+// MARK: - Movie Model
+
 struct Post: Decodable {
+    
+    // MARK: - Properties
+    
     let userId: Int
     let id: Int
     let title: String

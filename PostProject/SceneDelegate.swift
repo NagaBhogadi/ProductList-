@@ -15,16 +15,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        // MARK: - Scene Life Cycle
+        
         let viewModel = ProductViewModel()
         let productVC = ProductViewController(viewModel: viewModel)
         let navigationController = UINavigationController(rootViewController: productVC)
         let window = UIWindow(windowScene: windowScene)
-
-              
-              window.rootViewController = navigationController
-              window.makeKeyAndVisible()
-              
-              self.window = window
+        
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

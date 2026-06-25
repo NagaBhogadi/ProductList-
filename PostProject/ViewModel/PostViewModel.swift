@@ -11,13 +11,13 @@ protocol ProductViewModelProtocol: AnyObject {
     func fetchProducts(completion: @escaping() -> Void)
     func numberOfPost()-> Int
     func post(at index: Int) -> Post
-
     
 }
 
 class ProductViewModel: ProductViewModelProtocol {
     
-
+    // MARK: - Properties
+    
     private var products: [Post] = []
     
     // MARK: - API Call
@@ -34,13 +34,14 @@ class ProductViewModel: ProductViewModelProtocol {
             completion()
         }
     }
-// MARK:- Helper Method
     
-func numberOfPost() -> Int {
-            return products.count
-        }
-func post(at index: Int) -> Post {
-            return products[index]
-        }
+    // MARK: - Helper Methods
+    
+    func numberOfPost() -> Int {
+        return products.count
+    }
+    func post(at index: Int) -> Post {
+        return products[index]
+    }
 }
 
